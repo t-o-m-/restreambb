@@ -23,7 +23,9 @@ func main() {
 		},
 	}
 
-	server := &rtmp.Server{}
+	server := &rtmp.Server{
+		Addr: ":" + os.Getenv("PORT"),
+	}
 	server.HandlePublish = func(conn *rtmp.Conn) {
 		proxyServer.ServeRTMP(conn)
 	}
